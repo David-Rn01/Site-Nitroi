@@ -218,7 +218,7 @@ export default function Home() {
             {/* Cabeçalho da Lista */}
             <div className="grid grid-cols-12 gap-4 py-4 text-xs text-[#1B262C]/50 dark:text-[#BBE1FA] uppercase tracking-wider hidden md:grid">
               <div className="col-span-4">Nome_Membro</div>
-              <div className="col-span-4">Especialidade / Role</div>
+              <div className="col-span-4"> Especialidade </div>
               <div className="col-span-4 text-right">Acesso</div>
             </div>
 
