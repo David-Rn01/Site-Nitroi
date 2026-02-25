@@ -56,7 +56,9 @@ export default function Home() {
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl backdrop-blur-md bg-[#F4F4F4]/70 dark:bg-[#1B262C]/80 border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded-full px-6 py-3 shadow-lg flex justify-between items-center transition-colors duration-300">
         <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
           <div className="w-3 h-3 bg-[#FF6B00] rounded-sm"></div>
-          Nitro<span className="text-[#FF6B00]">i</span>
+          <div className="flex items-center font-bold text-xl tracking-tighter">
+  <span>Nitro<span className="text-[#FF6B00]">i</span></span>
+</div>
         </div>
 
         <div className="hidden md:flex gap-6 items-center font-mono text-xs uppercase font-semibold">
