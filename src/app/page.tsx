@@ -59,7 +59,7 @@ export default function Home() {
           <div className="flex items-center font-bold text-xl tracking-tighter">
   <span>Nitro<span className="text-[#FF6B00]">i</span></span>
 </div>
-        </div>
+        n</div>
 
         <div className="hidden md:flex gap-6 items-center font-mono text-xs uppercase font-semibold">
           <a href="#inicio" className="hover:text-[#FF6B00] transition-colors">./Início</a>
@@ -224,10 +224,10 @@ export default function Home() {
 
             {/* Arrays de Equipe */}
             {[
-              { name: 'Vitor', role: 'Lead_Developer', initial: 'V' },
-              { name: 'David', role: 'Systems_Analyst', initial: 'D' },
+              { name: 'Kawan', role: 'Lead_Developer', initial: 'K' },
+              { name: 'Vitor', role: 'Systems_Analyst', initial: 'V' },
               { name: 'Sabrina', role: 'UI/UX_Frontend', initial: 'S' },
-              { name: 'Kawan', role: 'Backend_Engineer', initial: 'K' },
+              { name: 'David', role: 'Backend_Engineer', initial: 'D' },
               { name: 'Antonio', role: 'DevOps_Cloud', initial: 'A' }
             ].map((member, idx) => (
               <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 items-center group hover:bg-black/5 dark:hover:bg-white/5 transition-colors px-2 md:px-0">
