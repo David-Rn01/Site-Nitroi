@@ -6,6 +6,7 @@ import {
   Server, Figma, Github, Linkedin, Mail, MapPin, Send 
 } from 'lucide-react';
 
+//Simbolos para coração de erro nos campos dos nomes
 const names: string[] = ['"Nitroi"', '"Vitor"', '"David"', '"Sabrina"', '"Kawan"', '"Antonio"', '"Deploying solutions"', '//', "'@ads/core'"];
 
 export default function Home() {
@@ -33,6 +34,31 @@ export default function Home() {
       setIsDark(true);
     }
   };
+
+  //Captura de textos inseridos nos campos de contato
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [payload, setPayload] = useState('');
+
+  function hendleChangeNome(e: React.ChangeEvent<HTMLInputElement>) {
+    setNome(e.target.value);
+  }
+
+  function hendleChangeEmail(e: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(e.target.value);
+  }
+
+  function hendleChancePlayload(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setPayload(e.target.value);
+  }
+
+  //Testar valores
+  function hendleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log('Nome:', nome);
+    console.log('Email:', email);
+    console.log('Payload:', payload);
+  }
 
   return (
     <div className="min-h-screen bg-[#F4F4F4] text-[#1B262C] dark:bg-[#1B262C] dark:text-[#F4F4F4] font-sans antialiased relative selection:bg-[#FF6B00] selection:text-white transition-colors duration-300">
@@ -252,24 +278,25 @@ export default function Home() {
 
             <form 
               className="flex flex-col gap-4" 
-              onSubmit={(e) => { 
-                e.preventDefault(); 
-                alert('POST /api/contact - Sucesso!'); 
-              }}
+              onSubmit={hendleSubmit} 
+              // onSubmit={(e) => { 
+              //   e.preventDefault(); 
+              //   alert('POST /api/contact - Sucesso!'); 
+              // }}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label className="font-mono text-xs text-[#BBE1FA]">const nome = </label>
-                  <input type="text" placeholder="'Seu Nome'" className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
+                  <input type="text" placeholder="'Seu Nome'" id="nome" value={nome} onChange={hendleChangeNome} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="font-mono text-xs text-[#BBE1FA]">const email = </label>
-                  <input type="email" placeholder="'email@empresa.com'" className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
+                  <input type="email" placeholder="'email@empresa.com'" id="email" value={email} onChange={hendleChangeEmail} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
                 </div>
               </div>
               <div className="flex flex-col gap-1 mt-2">
                 <label className="font-mono text-xs text-[#BBE1FA]">const payload = </label>
-                <textarea rows={4} placeholder="'Descreva a sua necessidade técnica...'" className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required></textarea>
+                <textarea rows={4} placeholder="'Descreva a sua necessidade técnica...'" id="payload" value={payload} onChange={hendleChancePlayload} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required></textarea>
               </div>
               <button type="submit" className="mt-4 py-4 bg-[#FF6B00] text-white font-bold rounded font-mono hover:bg-orange-600 transition-colors flex justify-center items-center gap-2">
                 System.send() <Send className="w-4 h-4" />
