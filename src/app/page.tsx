@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -8,10 +7,8 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
-  // Estado para controlar o Dark Mode
   const [isDark, setIsDark] = useState(true);
 
-  // Efeito executado apenas no lado do cliente para checar a preferência salva
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
@@ -23,7 +20,6 @@ export default function Home() {
     }
   }, []);
 
-  // Função para alternar o tema
   const toggleTheme = () => {
     if (isDark) {
       document.documentElement.classList.remove('dark');
@@ -52,14 +48,16 @@ export default function Home() {
         }}
       />
 
-      {/* Floating Navbar (Menu em Pílula) */}
+      {/* Floating Navbar */}
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl backdrop-blur-md bg-[#F4F4F4]/70 dark:bg-[#1B262C]/80 border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded-full px-6 py-3 shadow-lg flex justify-between items-center transition-colors duration-300">
-        <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
-          <div className="w-3 h-3 bg-[#FF6B00] rounded-sm"></div>
-          <div className="flex items-center font-bold text-xl tracking-tighter">
-  <span>Nitro<span className="text-[#FF6B00]">i</span></span>
-</div>
-        n</div>
+        
+        <div className="flex items-center">
+          <img 
+            src="/logo-nitroi.png" 
+            alt="Logo Nitroi" 
+            className="w-auto h-12 md:h-16 object-contain drop-shadow-md"
+          />
+        </div>
 
         <div className="hidden md:flex gap-6 items-center font-mono text-xs uppercase font-semibold">
           <a href="#inicio" className="hover:text-[#FF6B00] transition-colors">./Início</a>
@@ -89,7 +87,6 @@ export default function Home() {
         
         {/* Hero Section */}
         <section id="inicio" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[70vh]">
-          {/* Coluna da Esquerda: Textos */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <div className="font-mono text-[#FF6B00] text-sm font-semibold tracking-wider flex items-center gap-2">
               <span className="w-8 h-px bg-[#FF6B00]"></span> SYSTEM.ONLINE // ADS
@@ -112,7 +109,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Coluna da Direita: Terminal Window */}
           <div className="lg:col-span-6 relative mt-10 lg:mt-0">
             <div className="absolute -inset-1 bg-gradient-to-r from-[#FF6B00] to-purple-600 rounded-xl blur opacity-20 dark:opacity-40 animate-pulse"></div>
             <div className="relative bg-[#F4F4F4] dark:bg-[#0F161A] rounded-xl border border-[#BBE1FA]/40 dark:border-[#2C3E50] shadow-2xl overflow-hidden">
@@ -130,7 +126,7 @@ export default function Home() {
                     {'  '}name: <span className="text-green-600 dark:text-green-400">"Nitroi"</span>,{'\n'}
                     {'  '}members: [{'\n'}
                     {'    '}<span className="text-green-600 dark:text-green-400">"Vitor"</span>, <span className="text-green-600 dark:text-green-400">"David"</span>, <span className="text-green-600 dark:text-green-400">"Sabrina"</span>,{'\n'}
-                    {'    '}<span className="text-green-600 dark:text-green-400">"Kawan"</span>, <span className="text-green-600 dark:text-green-400">"Antonio"</span>{'\n'}
+                    {'    '}<span className="text-green-600 dark:text-green-400">"Kauan"</span>, <span className="text-green-600 dark:text-green-400">"Antonio"</span>{'\n'}
                     {'  '}],{'\n'}
                     {'  '}status: <span className="text-blue-600 dark:text-blue-400">"Deploying Solutions"</span>{'\n'}
                     {`}`});{'\n\n'}
@@ -144,14 +140,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Divisor Técnico 1 */}
         <div className="w-full h-px bg-[#BBE1FA]/30 dark:bg-[#2C3E50] relative">
           <div className="absolute -top-3 left-0 bg-[#F4F4F4] dark:bg-[#1B262C] px-2 font-mono text-xs text-[#BBE1FA] dark:text-[#2C3E50] font-bold">01 // PROJETOS</div>
         </div>
 
-        {/* Secção de Projetos: Bento Box Layout */}
         <section id="projetos" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Flashtech */}
           <div className="md:col-span-2 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors relative overflow-hidden flex flex-col justify-between min-h-[300px]">
             <div className="absolute right-0 top-0 w-64 h-64 bg-[#FF6B00]/5 rounded-full blur-3xl group-hover:bg-[#FF6B00]/10 transition-colors"></div>
             <div className="relative z-10 flex justify-between items-start">
@@ -169,7 +162,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Projeto Menor 1 */}
           <div className="md:col-span-1 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors flex flex-col justify-between">
             <div>
               <Server className="w-8 h-8 text-[#1B262C]/50 dark:text-[#BBE1FA] mb-6 group-hover:text-[#FF6B00] transition-colors" />
@@ -182,7 +174,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Projeto Menor 2 */}
           <div className="md:col-span-1 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors flex flex-col justify-between">
             <div>
               <Figma className="w-8 h-8 text-[#1B262C]/50 dark:text-[#BBE1FA] mb-6 group-hover:text-[#FF6B00] transition-colors" />
@@ -195,7 +186,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Destaque CTA */}
           <div className="md:col-span-2 group bg-[#1B262C] dark:bg-[#2C3E50] text-[#F4F4F4] rounded-2xl border border-[#1B262C] dark:border-[#2C3E50] p-8 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-2">Precisa de um sistema sob medida?</h3>
@@ -207,27 +197,24 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Divisor Técnico 2 */}
         <div className="w-full h-px bg-[#BBE1FA]/30 dark:bg-[#2C3E50] relative">
           <div className="absolute -top-3 left-0 bg-[#F4F4F4] dark:bg-[#1B262C] px-2 font-mono text-xs text-[#BBE1FA] dark:text-[#2C3E50] font-bold">02 // EQUIPE_ADS</div>
         </div>
 
-        {/* Secção da Equipe */}
         <section id="equipe" className="w-full">
           <div className="flex flex-col border-t border-b border-[#BBE1FA]/30 dark:border-[#2C3E50] divide-y divide-[#BBE1FA]/30 dark:divide-[#2C3E50] font-mono">
-            {/* Cabeçalho da Lista */}
             <div className="grid grid-cols-12 gap-4 py-4 text-xs text-[#1B262C]/50 dark:text-[#BBE1FA] uppercase tracking-wider hidden md:grid">
               <div className="col-span-4">Nome_Membro</div>
               <div className="col-span-4"> Especialidade </div>
               <div className="col-span-4 text-right">Acesso</div>
             </div>
 
-            {/* Arrays de Equipe */}
             {[
               { name: 'Kawan', role: 'Lead_Developer', initial: 'K' },
               { name: 'Vitor', role: 'Systems_Analyst', initial: 'V' },
               { name: 'Sabrina', role: 'UI/UX_Frontend', initial: 'S' },
               { name: 'David', role: 'Backend_Engineer', initial: 'D' },
+              { name: 'Kauan', role: 'Backend_Engineer', initial: 'K' },
               { name: 'Antonio', role: 'DevOps_Cloud', initial: 'A' }
             ].map((member, idx) => (
               <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 items-center group hover:bg-black/5 dark:hover:bg-white/5 transition-colors px-2 md:px-0">
@@ -247,7 +234,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção de Contato */}
         <section id="contato" className="bg-[#1B262C] rounded-3xl p-8 md:p-16 border border-[#2C3E50] text-[#F4F4F4] overflow-hidden relative">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF6B00]/10 rounded-full blur-[100px] pointer-events-none"></div>
           
