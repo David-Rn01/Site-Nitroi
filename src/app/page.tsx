@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Zap, Moon, Sun, TerminalSquare, ArrowUpRight, 
-  Server, Figma, Github, Linkedin, Mail, MapPin, Send 
+  Server, Figma, Github, Linkedin, Mail, MapPin, Send,
+  Link2
 } from 'lucide-react';
 
 //Simbolos para coração de erro nos campos dos nomes
@@ -113,7 +114,7 @@ export default function Home() {
 
       <main className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col gap-32">
         
-        {/* Hero Section */}
+       {/* Hero Section */}
         <section id="inicio" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[70vh]">
           <div className="lg:col-span-6 flex flex-col gap-6">
             <div className="font-mono text-[#FF6B00] text-sm font-semibold tracking-wider flex items-center gap-2">
@@ -172,27 +173,44 @@ export default function Home() {
           <div className="absolute -top-3 left-0 bg-[#F4F4F4] dark:bg-[#1B262C] px-2 font-mono text-xs text-[#BBE1FA] dark:text-[#2C3E50] font-bold">01 // PROJETOS</div>
         </div>
 
+        
         <section id="projetos" className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* PROJETO PRINCIPAL (GRANDE) */}
           <div className="md:col-span-2 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors relative overflow-hidden flex flex-col justify-between min-h-75">
             <div className="absolute right-0 top-0 w-64 h-64 bg-[#FF6B00]/5 rounded-full blur-3xl group-hover:bg-[#FF6B00]/10 transition-colors"></div>
             <div className="relative z-10 flex justify-between items-start">
               <div className="p-3 bg-[#FF6B00]/10 rounded-lg text-[#FF6B00] w-fit mb-6">
-                <Zap className="w-8 h-8" />
+                <Link2 className="w-8 h-8" />
               </div>
-              <span className="font-mono text-xs px-3 py-1 border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded-full">v1.0.0_Live</span>
+              <span className="font-mono text-xs px-3 py-1 border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded-full">v3.0_Live</span>
             </div>
             <div className="relative z-10">
+              
+              {/* 1. MUDA O NOME DO PROJETO AQUI */}
               <h3 className="text-3xl font-bold mb-3">Projeto Flashtech</h3>
-              <p className="text-[#1B262C]/70 dark:text-[#BBE1FA] max-w-md mb-6">Plataforma de gestão integrada com análise de dados em tempo real. Arquitetura desenhada para zero latência.</p>
-              <a href="#" className="font-mono text-sm text-[#FF6B00] flex items-center gap-2 hover:underline">
-                Ver_Repositório <ArrowUpRight className="w-4 h-4" />
+              
+              {/* 2. MUDA A DESCRIÇÃO AQUI */}
+              <p className="text-[#1B262C]/70 dark:text-[#BBE1FA] max-w-md mb-6">
+                O Flashtech foi estruturado como uma plataforma de e-commerce especializada no mercado de eletrônicos e componentes de hardware.
+                 O foco central do projeto foi criar um ambiente digital que equilibrasse uma estética moderna com uma usabilidade técnica eficiente,
+                 essencial para quem busca produtos como placas de vídeo, processadores e periféricos.
+              </p>
+              
+              {/* 3. COLOCA O LINK DO TEU SITE NO "href" AQUI */}
+              <a href="https://pojetos-faculdade-teste.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-mono text-sm text-[#FF6B00] flex items-center gap-2 hover:underline">
+                Veja_nosso_site_projeto <ArrowUpRight className="w-4 h-4" />
               </a>
+
             </div>
           </div>
 
+          {/* PROJETO MENOR 1 */}
           <div className="md:col-span-1 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors flex flex-col justify-between">
             <div>
               <Server className="w-8 h-8 text-[#1B262C]/50 dark:text-[#BBE1FA] mb-6 group-hover:text-[#FF6B00] transition-colors" />
+              
+              {/* NOME E DESCRIÇÃO AQUI */}
               <h3 className="text-xl font-bold mb-2">API Gateway</h3>
               <p className="text-sm text-[#1B262C]/70 dark:text-[#BBE1FA]">Microsserviço de roteamento para aplicações de alta demanda.</p>
             </div>
@@ -202,9 +220,12 @@ export default function Home() {
             </div>
           </div>
 
+          {/* PROJETO MENOR 2 */}
           <div className="md:col-span-1 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors flex flex-col justify-between">
             <div>
               <Figma className="w-8 h-8 text-[#1B262C]/50 dark:text-[#BBE1FA] mb-6 group-hover:text-[#FF6B00] transition-colors" />
+              
+              {/* NOME E DESCRIÇÃO AQUI */}
               <h3 className="text-xl font-bold mb-2">Design System</h3>
               <p className="text-sm text-[#1B262C]/70 dark:text-[#BBE1FA]">Biblioteca de componentes padronizados para UI/UX ágil.</p>
             </div>
@@ -214,6 +235,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Destaque CTA (Deixa como está) */}
           <div className="md:col-span-2 group bg-[#1B262C] dark:bg-[#2C3E50] text-[#F4F4F4] rounded-2xl border border-[#1B262C] dark:border-[#2C3E50] p-8 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-2">Precisa de um sistema sob medida?</h3>
@@ -225,24 +247,26 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Divisor Técnico 2 */}
         <div className="w-full h-px bg-[#BBE1FA]/30 dark:bg-[#2C3E50] relative">
           <div className="absolute -top-3 left-0 bg-[#F4F4F4] dark:bg-[#1B262C] px-2 font-mono text-xs text-[#BBE1FA] dark:text-[#2C3E50] font-bold">02 // EQUIPE_ADS</div>
         </div>
 
+        {/* Secção da Equipe */}
         <section id="equipe" className="w-full">
           <div className="flex flex-col border-t border-b border-[#BBE1FA]/30 dark:border-[#2C3E50] divide-y divide-[#BBE1FA]/30 dark:divide-[#2C3E50] font-mono">
-            <div className="grid grid-cols-12 gap-4 py-4 text-xs text-[#1B262C]/50 dark:text-[#BBE1FA] uppercase tracking-wider hidden md:grid">
+            <div className="grid grid-cols-12 gap-4 py-4 text-xs text-[#1B262C]/50 dark:text-[#BBE1FA] uppercase tracking-wider md:grid">
               <div className="col-span-4">Nome_Membro</div>
-              <div className="col-span-4"> Especialidade </div>
+              <div className="col-span-4">Especialidade / Role</div>
               <div className="col-span-4 text-right">Acesso</div>
             </div>
 
             {[
-              { name: 'Kawan', role: 'Lead_Developer', initial: 'K' },
-              { name: 'Vitor', role: 'Systems_Analyst', initial: 'V' },
-              { name: 'Sabrina', role: 'UI/UX_Frontend', initial: 'S' },
-              { name: 'David', role: 'Backend_Engineer', initial: 'D' },
-              { name: 'Antonio', role: 'DevOps_Cloud', initial: 'A' }
+              { name: 'Kawan', role: 'Lead_Developer', initial: 'K', github: 'https://github.com/Kawan-Karlos', linkedin: 'https://linkedin.com' },
+              { name: 'Vitor', role: 'Systems_Analyst', initial: 'V', github: 'https://github.com/vitormarcelo25', linkedin: 'https://linkedin.com' },
+              { name: 'Sabrina', role: 'UI/UX_Frontend', initial: 'S', github: 'https://github.com/skayllane06-collab', linkedin: 'https://linkedin.com' },
+              { name: 'David', role: 'Backend_Engineer', initial: 'D', github: 'https://github.com/David-Rn01', linkedin: 'https://linkedin.com' },
+              { name: 'Antonio', role: 'DevOps_Cloud', initial: 'A', github: 'https://github.com/LXCNTURY', linkedin: 'https://linkedin.com' }
             ].map((member, idx) => (
               <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 items-center group hover:bg-black/5 dark:hover:bg-white/5 transition-colors px-2 md:px-0">
                 <div className="md:col-span-4 flex items-center gap-4">
@@ -253,14 +277,19 @@ export default function Home() {
                   <span className="text-[#FF6B00]">{'>'}</span> {member.role}
                 </div>
                 <div className="md:col-span-4 flex md:justify-end gap-3 mt-4 md:mt-0 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
-                  <a href="#" className="p-2 bg-white dark:bg-[#2C3E50] border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded hover:text-[#FF6B00] transition-colors"><Github className="w-4 h-4" /></a>
-                  <a href="#" className="p-2 bg-white dark:bg-[#2C3E50] border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded hover:text-[#FF6B00] transition-colors"><Linkedin className="w-4 h-4" /></a>
+                  <a href={member.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-white dark:bg-[#2C3E50] border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded hover:text-[#FF6B00] transition-colors" title="Ver GitHub">
+                    <Github className="w-4 h-4" />
+                  </a>
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 bg-white dark:bg-[#2C3E50] border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded hover:text-[#FF6B00] transition-colors" title="Ver LinkedIn">
+                    <Linkedin className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
+        {/* Seção de Contato */}
         <section id="contato" className="bg-[#1B262C] rounded-3xl p-8 md:p-16 border border-[#2C3E50] text-[#F4F4F4] overflow-hidden relative">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF6B00]/10 rounded-full blur-[100px] pointer-events-none"></div>
           
@@ -271,32 +300,31 @@ export default function Home() {
               <p className="text-[#BBE1FA] mb-8">Envie-nos uma requisição e a nossa equipe entrará em contato para discutirmos a arquitetura técnica do seu projeto.</p>
               
               <div className="flex flex-col gap-4 font-mono text-sm text-[#BBE1FA]">
-                <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-[#FF6B00]" /> Nitroi.cloud5@gmail.com</div>
+                <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-[#FF6B00]" /> root@nitroi.dev</div>
                 <div className="flex items-center gap-3"><MapPin className="w-5 h-5 text-[#FF6B00]" /> Sistema Distribuído / Remoto</div>
               </div>
             </div>
 
             <form 
               className="flex flex-col gap-4" 
-              onSubmit={hendleSubmit} 
-              // onSubmit={(e) => { 
-              //   e.preventDefault(); 
-              //   alert('POST /api/contact - Sucesso!'); 
-              // }}
+              onSubmit={(e) => { 
+                e.preventDefault(); 
+                alert('POST /api/contact - Sucesso!'); 
+              }}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label className="font-mono text-xs text-[#BBE1FA]">const nome = </label>
-                  <input type="text" placeholder="'Seu Nome'" id="nome" value={nome} onChange={hendleChangeNome} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
+                  <input type="text" placeholder="'Seu Nome'" className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="font-mono text-xs text-[#BBE1FA]">const email = </label>
-                  <input type="email" placeholder="'email@empresa.com'" id="email" value={email} onChange={hendleChangeEmail} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
+                  <input type="email" placeholder="'email@empresa.com'" className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
                 </div>
               </div>
               <div className="flex flex-col gap-1 mt-2">
                 <label className="font-mono text-xs text-[#BBE1FA]">const payload = </label>
-                <textarea rows={4} placeholder="'Descreva a sua necessidade técnica...'" id="payload" value={payload} onChange={hendleChancePlayload} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required></textarea>
+                <textarea rows={4} placeholder="'Descreva a sua necessidade técnica...'" className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required></textarea>
               </div>
               <button type="submit" className="mt-4 py-4 bg-[#FF6B00] text-white font-bold rounded font-mono hover:bg-orange-600 transition-colors flex justify-center items-center gap-2">
                 System.send() <Send className="w-4 h-4" />
