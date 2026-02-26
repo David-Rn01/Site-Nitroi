@@ -126,7 +126,7 @@ export default function Home() {
                     {'  '}name: <span className="text-green-600 dark:text-green-400">"Nitroi"</span>,{'\n'}
                     {'  '}members: [{'\n'}
                     {'    '}<span className="text-green-600 dark:text-green-400">"Vitor"</span>, <span className="text-green-600 dark:text-green-400">"David"</span>, <span className="text-green-600 dark:text-green-400">"Sabrina"</span>,{'\n'}
-                    {'    '}<span className="text-green-600 dark:text-green-400">"Kauan"</span>, <span className="text-green-600 dark:text-green-400">"Antonio"</span>{'\n'}
+                    {'    '}<span className="text-green-600 dark:text-green-400">"Kawan"</span>, <span className="text-green-600 dark:text-green-400">"Antonio"</span>{'\n'}
                     {'  '}],{'\n'}
                     {'  '}status: <span className="text-blue-600 dark:text-blue-400">"Deploying Solutions"</span>{'\n'}
                     {`}`});{'\n\n'}
@@ -214,7 +214,7 @@ export default function Home() {
               { name: 'Vitor', role: 'Systems_Analyst', initial: 'V' },
               { name: 'Sabrina', role: 'UI/UX_Frontend', initial: 'S' },
               { name: 'David', role: 'Backend_Engineer', initial: 'D' },
-              { name: 'Kauan', role: 'Backend_Engineer', initial: 'K' },
+              { name: 'Kawan', role: 'Backend_Engineer', initial: 'K' },
               { name: 'Antonio', role: 'DevOps_Cloud', initial: 'A' }
             ].map((member, idx) => (
               <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 items-center group hover:bg-black/5 dark:hover:bg-white/5 transition-colors px-2 md:px-0">
