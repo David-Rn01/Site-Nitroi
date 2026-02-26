@@ -327,19 +327,8 @@ export default function Home() {
             </div>
 
             <form 
-              className="flex flex-col gap-4" 
-<<<<<<< HEAD
-              onSubmit={hendleSendEmail} 
-              // onSubmit={(e) => { 
-              //   e.preventDefault(); 
-              //   alert('POST /api/contact - Sucesso!'); 
-              // }}
-=======
-              onSubmit={(e) => { 
-                e.preventDefault(); 
-                alert('POST /api/contact - Sucesso!'); 
-              }}
->>>>>>> 4d9130135b783269d5bbe15deda8956226d72546
+              className="flex flex-col gap-4"
+              onSubmit={hendleSendEmail}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
