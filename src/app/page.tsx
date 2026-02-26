@@ -111,13 +111,13 @@ export default function Home() {
 
         <div className="hidden md:flex gap-6 items-center font-mono text-xs uppercase font-semibold">
           <a href="#inicio" className="hover:text-[#FF6B00] transition-colors">./Início</a>
-          <a href="#projetos" className="hover:text-[#FF6B00] transition-colors">./Work</a>
+          <a href="#projetos" className="hover:text-[#FF6B00] transition-colors">./Works</a>
           <a href="#equipe" className="hover:text-[#FF6B00] transition-colors">./Equipe</a>
         </div>
 
         <div className="flex items-center gap-4">
           <a href="#contato" className="hidden md:block px-4 py-2 bg-[#1B262C] dark:bg-[#F4F4F4] text-[#F4F4F4] dark:text-[#1B262C] text-sm font-bold rounded-full hover:bg-[#FF6B00] dark:hover:bg-[#FF6B00] hover:text-white dark:hover:text-white transition-colors">
-            [ INIT ]
+            [ CONTATE-NOS ]
           </a>
           <button 
             onClick={toggleTheme}
@@ -321,7 +321,7 @@ export default function Home() {
               <p className="text-[#BBE1FA] mb-8">Envie-nos uma requisição e a nossa equipe entrará em contato para discutirmos a arquitetura técnica do seu projeto.</p>
               
               <div className="flex flex-col gap-4 font-mono text-sm text-[#BBE1FA]">
-                <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-[#FF6B00]" /> root@nitroi.dev</div>
+                <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-[#FF6B00]" /> nitroi.cloud5@gmail.com</div>
                 <div className="flex items-center gap-3"><MapPin className="w-5 h-5 text-[#FF6B00]" /> Sistema Distribuído / Remoto</div>
               </div>
             </div>
