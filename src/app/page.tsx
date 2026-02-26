@@ -97,7 +97,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight">
               Engenharia <br />
               de Software <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B00] to-orange-400">Acelerada.</span>
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#FF6B00] to-orange-400">Acelerada.</span>
             </h1>
             
             <p className="text-lg text-[#1B262C]/70 dark:text-[#BBE1FA] max-w-lg">
@@ -112,7 +112,7 @@ export default function Home() {
           </div>
 
           <div className="lg:col-span-6 relative mt-10 lg:mt-0">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#FF6B00] to-purple-600 rounded-xl blur opacity-20 dark:opacity-40 animate-pulse"></div>
+            <div className="absolute -inset-1 bg-linear-to-r from-[#FF6B00] to-purple-600 rounded-xl blur opacity-20 dark:opacity-40 animate-pulse"></div>
             <div className="relative bg-[#F4F4F4] dark:bg-[#0F161A] rounded-xl border border-[#BBE1FA]/40 dark:border-[#2C3E50] shadow-2xl overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-[#BBE1FA]/20 dark:border-[#2C3E50] bg-black/5 dark:bg-white/5">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -147,7 +147,7 @@ export default function Home() {
         </div>
 
         <section id="projetos" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors relative overflow-hidden flex flex-col justify-between min-h-[300px]">
+          <div className="md:col-span-2 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors relative overflow-hidden flex flex-col justify-between min-h-75">
             <div className="absolute right-0 top-0 w-64 h-64 bg-[#FF6B00]/5 rounded-full blur-3xl group-hover:bg-[#FF6B00]/10 transition-colors"></div>
             <div className="relative z-10 flex justify-between items-start">
               <div className="p-3 bg-[#FF6B00]/10 rounded-lg text-[#FF6B00] w-fit mb-6">
