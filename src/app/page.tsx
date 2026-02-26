@@ -216,7 +216,6 @@ export default function Home() {
               { name: 'Vitor', role: 'Systems_Analyst', initial: 'V' },
               { name: 'Sabrina', role: 'UI/UX_Frontend', initial: 'S' },
               { name: 'David', role: 'Backend_Engineer', initial: 'D' },
-              { name: 'Kawan', role: 'Backend_Engineer', initial: 'K' },
               { name: 'Antonio', role: 'DevOps_Cloud', initial: 'A' }
             ].map((member, idx) => (
               <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 items-center group hover:bg-black/5 dark:hover:bg-white/5 transition-colors px-2 md:px-0">
