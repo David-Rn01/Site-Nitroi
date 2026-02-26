@@ -6,6 +6,8 @@ import {
   Server, Figma, Github, Linkedin, Mail, MapPin, Send 
 } from 'lucide-react';
 
+const names: string[] = ['"Nitroi"', '"Vitor"', '"David"', '"Sabrina"', '"Kawan"', '"Antonio"', '"Deploying solutions"', '//', "'@ads/core'"];
+
 export default function Home() {
   const [isDark, setIsDark] = useState(true);
 
@@ -121,16 +123,16 @@ export default function Home() {
               <div className="p-6 overflow-x-auto text-sm md:text-base font-mono leading-relaxed">
                 <pre>
                   <code className="text-[#1B262C] dark:text-[#BBE1FA]">
-                    <span className="text-purple-600 dark:text-purple-400">import</span> {'{ Team, Skillset }'} <span className="text-purple-600 dark:text-purple-400">from</span> <span className="text-green-600 dark:text-green-400">'@ads/core'</span>;{'\n\n'}
+                    <span className="text-purple-600 dark:text-purple-400">import</span> {'{ Team, Skillset }'} <span className="text-purple-600 dark:text-purple-400">from</span> <span className="text-green-600 dark:text-green-400">{names[8]}</span>;{'\n\n'}
                     <span className="text-[#FF6B00]">const</span> nitroi = <span className="text-purple-600 dark:text-purple-400">new</span> Team({`{`}{'\n'}
-                    {'  '}name: <span className="text-green-600 dark:text-green-400">"Nitroi"</span>,{'\n'}
+                    {'  '}name: <span className="text-green-600 dark:text-green-400">{names[0]}</span>,{'\n'}
                     {'  '}members: [{'\n'}
-                    {'    '}<span className="text-green-600 dark:text-green-400">"Vitor"</span>, <span className="text-green-600 dark:text-green-400">"David"</span>, <span className="text-green-600 dark:text-green-400">"Sabrina"</span>,{'\n'}
-                    {'    '}<span className="text-green-600 dark:text-green-400">"Kawan"</span>, <span className="text-green-600 dark:text-green-400">"Antonio"</span>{'\n'}
+                    {'    '}<span className="text-green-600 dark:text-green-400">{names[1]}</span>, <span className="text-green-600 dark:text-green-400">{names[2]}</span>, <span className="text-green-600 dark:text-green-400">{names[3]}</span>,{'\n'}
+                    {'    '}<span className="text-green-600 dark:text-green-400">{names[4]}</span>, <span className="text-green-600 dark:text-green-400">{names[5]}</span>{'\n'}
                     {'  '}],{'\n'}
-                    {'  '}status: <span className="text-blue-600 dark:text-blue-400">"Deploying Solutions"</span>{'\n'}
+                    {'  '}status: <span className="text-blue-600 dark:text-blue-400">{names[6]}</span>{'\n'}
                     {`}`});{'\n\n'}
-                    <span className="text-[#1B262C]/50 dark:text-[#BBE1FA]/50">// Inicializando matriz de análise...</span>{'\n'}
+                    <span className="text-[#1B262C]/50 dark:text-[#BBE1FA]/50">{names[7]} Inicializando matriz de análise...</span>{'\n'}
                     <span className="text-blue-600 dark:text-blue-400">await</span> nitroi.execute(Skillset.FULLSTACK);{'\n'}
                     <span className="text-[#FF6B00] font-bold animate-pulse">_</span>
                   </code>
