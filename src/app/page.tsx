@@ -51,14 +51,35 @@ export default function Home() {
   function hendleChancePlayload(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setPayload(e.target.value);
   }
+  
+  //Send email
+  const hendleSendEmail = async () => {
+    try{
+      const response = await fetch('/api/email', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          nome: nome,
+          email: email,
+          payload: payload
+        }),
+      });
 
-  //Testar valores
-  function hendleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    console.log('Nome:', nome);
-    console.log('Email:', email);
-    console.log('Payload:', payload);
-  }
+      console.log('Resposta do servidor:', response.status);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Email enviado!');
+      } else {
+        alert('Erro ao eviar email: ' + data.message);
+      }
+    } catch (err) {
+      alert('erro ao conectar com o servidor: ' + err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#F4F4F4] text-[#1B262C] dark:bg-[#1B262C] dark:text-[#F4F4F4] font-sans antialiased relative selection:bg-[#FF6B00] selection:text-white transition-colors duration-300">
@@ -278,7 +299,7 @@ export default function Home() {
 
             <form 
               className="flex flex-col gap-4" 
-              onSubmit={hendleSubmit} 
+              onSubmit={hendleSendEmail} 
               // onSubmit={(e) => { 
               //   e.preventDefault(); 
               //   alert('POST /api/contact - Sucesso!'); 
