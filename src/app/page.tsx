@@ -133,13 +133,9 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
-  
-  <h1 className="text-black dark:text-white text-5xl md:text-7xl font-extrabold leading-[1.1] mb-8">
-    Engenharia de Software <span className="text-[#FF6B00]">Acelerada.</span>
-  </h1>
-
-
+      <main className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col gap-32">
+        
+       {/* Hero Section */}
         <section id="inicio" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[70vh]">
           <div className="lg:col-span-6 flex flex-col gap-6">
             <div className="font-mono text-[#FF6B00] text-sm font-semibold tracking-wider flex items-center gap-2">
