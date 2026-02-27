@@ -78,7 +78,6 @@ export default function Home() {
         </div>
 
         <div className="hidden md:flex gap-6 items-center font-mono text-xs uppercase font-semibold">
-          {/* CORREÇÃO: Adicionar text-white para o tema claro */}
           <a href="#inicio" className="text-white hover:text-[#FF6B00] transition-colors">./Início</a>
           <a href="#projetos" className="text-white hover:text-[#FF6B00] transition-colors">./Works</a>
           <a href="#equipe" className="text-white hover:text-[#FF6B00] transition-colors">./Equipe</a>
@@ -152,7 +151,9 @@ export default function Home() {
 
 
         <div className="w-full h-px bg-[#BBE1FA]/30 dark:bg-[#2C3E50] relative my-20">
-          <div className="absolute -top-3 left-0 bg-inherit px-2 font-mono text-xs opacity-50 font-bold">01 // PROJETOS</div>
+          <div className="absolute -top-3 left-0 bg-inherit px-2 font-mono text-xs font-bold">
+            <span className="text-black dark:text-white">01 // PROJETOS</span>
+          </div>
         </div>
 
         <section id="projetos" className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -186,7 +187,9 @@ export default function Home() {
 
         {/* Equipe */}
         <div className="w-full h-px bg-[#BBE1FA]/30 dark:bg-[#2C3E50] relative my-20">
-          <div className="absolute -top-3 left-0 bg-inherit px-2 font-mono text-xs opacity-50 font-bold">02 // EQUIPE_ADS</div>
+          <div className="absolute -top-3 left-0 bg-inherit px-2 font-mono text-xs font-bold">
+            <span className="text-black dark:text-white">02 // EQUIPE_ADS</span>
+          </div>
         </div>
 
         <section id="equipe" className="w-full">
@@ -200,12 +203,24 @@ export default function Home() {
             ].map((member, idx) => (
               <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 items-center group hover:bg-black/5 dark:hover:bg-white/5 transition-colors px-2">
                 <div className="md:col-span-4 flex items-center gap-4">
-                  <div className="w-10 h-10 bg-[#BBE1FA]/30 dark:bg-[#0F161A] rounded flex items-center justify-center font-bold group-hover:text-[#FF6B00] border border-transparent group-hover:border-[#FF6B00]/30">{member.initial}</div>
+                  <div className="w-10 h-10 bg-[#1B262C] dark:bg-[#0F161A] rounded flex items-center justify-center font-bold border border-transparent group-hover:border-[#FF6B00]/30 text-white">
+                    {member.initial}
+                  </div>
                   <span className="text-xl font-bold">{member.name}</span>
                 </div>
-                <div className="md:col-span-4 text-sm opacity-70"><span className="text-[#FF6B00]">{'>'}</span> {member.role}</div>
+                <div className="md:col-span-4 text-sm opacity-70">
+                  <span className="text-[#FF6B00]">{'>'}</span> {member.role}
+                </div>
                 <div className="md:col-span-4 flex md:justify-end gap-3">
-                  <a href={member.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-white dark:bg-[#2C3E50] border border-[#BBE1FA]/30 rounded hover:text-[#FF6B00] transition-colors"><Github className="w-4 h-4" /></a>
+
+                  <a
+                    href={member.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-[#1B262C] dark:bg-[#2C3E50] border border-[#BBE1FA]/30 rounded hover:bg-[#FF6B00] transition-colors"
+                  >
+                    <Github className="w-4 h-4 text-white" />
+                  </a>
                 </div>
               </div>
             ))}
@@ -236,7 +251,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="text-center py-8 font-mono text-xs opacity-50">
+      <footer className="text-center py-8 font-mono text-xs opacity-100">
         <p>Copyright © 2026 Nitroi_ADS. Todos os blocos processados.</p>
       </footer>
     </div>
