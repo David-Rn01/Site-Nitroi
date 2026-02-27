@@ -7,6 +7,7 @@ import {
   Link2
 } from 'lucide-react';
 
+//Simbolos para coração de erro nos campos dos nomes
 const names: string[] = ['"Nitroi"', '"Vitor"', '"David"', '"Sabrina"', '"Kawan"', '"Antonio"', '"Deploying solutions"', '//', "'@ads/core'"];
 
 export default function Home() {
@@ -35,117 +36,330 @@ export default function Home() {
     }
   };
 
+  //Captura de textos inseridos nos campos de contato
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [payload, setPayload] = useState('');
 
-  const hendleSendEmail = async (e: React.FormEvent) => {
-    e.preventDefault(); // Impede a página de recarregar
-    try {
+  function hendleChangeNome(e: React.ChangeEvent<HTMLInputElement>) {
+    setNome(e.target.value);
+  }
+
+  function hendleChangeEmail(e: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(e.target.value);
+  }
+
+  function hendleChangePayload(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setPayload(e.target.value);
+  }
+  
+  //Send email
+  const hendleSendEmail = async () => {
+    try{
       const response = await fetch('/api/email', {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ nome, email, payload }),
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          nome: nome,
+          email: email,
+          payload: payload
+        }),
       });
-      if (response.ok) { alert('Email enviado!'); } 
-      else { alert('Erro ao enviar'); }
-    } catch (err) { alert('Erro no servidor'); }
+
+      console.log('Resposta do servidor:', response.status);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Email enviado!');
+      } else {
+        alert('Erro ao eviar email: ' + data.message);
+      }
+    } catch (err) {
+      alert('erro ao conectar com o servidor: ' + err);
+    }
   };
 
   return (
-    // ESTA DIV CONTROLA O MODO ESCURO NO SITE TODO
-    <div className={`${isDark ? 'dark' : ''} min-h-screen`}>
+    <div className="min-h-screen bg-[#F4F4F4] text-[#1B262C] dark:bg-[#1B262C] dark:text-[#F4F4F4] font-sans antialiased relative selection:bg-[#FF6B00] selection:text-white transition-colors duration-300">
       
-      {/* ESTA DIV É O FUNDO QUE MUDA DE COR */}
-      <div className="bg-[#F4F4F4] text-[#1B262C] dark:bg-[#1B262C] dark:text-[#F4F4F4] font-sans transition-colors duration-300 min-h-screen relative">
+      {/* Fundo Grid Dinâmico (Blueprint) */}
+      <div 
+        className="fixed inset-0 z-0 pointer-events-none opacity-[0.15] dark:opacity-30"
+        style={{
+          backgroundImage: isDark 
+            ? 'linear-gradient(to right, #2C3E50 1px, transparent 1px), linear-gradient(to bottom, #2C3E50 1px, transparent 1px)' 
+            : 'linear-gradient(to right, #BBE1FA 1px, transparent 1px), linear-gradient(to bottom, #BBE1FA 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 5%, black 40%, black 60%, transparent 95%)',
+          maskImage: 'linear-gradient(to bottom, transparent, black, transparent)'
+        }}
+      />
+
+      {/* Floating Navbar */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl backdrop-blur-md bg-[#F4F4F4]/70 dark:bg-[#1B262C]/80 border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded-full px-6 py-3 shadow-lg flex justify-between items-center transition-colors duration-300">
         
-        {/* Fundo Grid (Blueprint) */}
-        <div 
-          className="fixed inset-0 z-0 pointer-events-none opacity-[0.15] dark:opacity-30"
-          style={{
-            backgroundImage: isDark 
-              ? 'linear-gradient(to right, #2C3E50 1px, transparent 1px), linear-gradient(to bottom, #2C3E50 1px, transparent 1px)' 
-              : 'linear-gradient(to right, #BBE1FA 1px, transparent 1px), linear-gradient(to bottom, #BBE1FA 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
-          }}
-        />
+        <div className="flex items-center">
+          <img 
+            src="/logo-nitroi.png" 
+            alt="Logo Nitroi" 
+            className="w-auto h-12 md:h-16 object-contain drop-shadow-md"
+          />
+        </div>
 
-        {/* Menu Superior */}
-        <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl backdrop-blur-md bg-[#F4F4F4]/70 dark:bg-[#1B262C]/80 border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded-full px-6 py-3 shadow-lg flex justify-between items-center">
-          <img src="/logo-nitroi.png" alt="Logo" className="h-10 md:h-12" />
-          
-          <div className="hidden md:flex gap-6 items-center font-mono text-xs font-semibold">
-            <a href="#inicio" className="hover:text-[#FF6B00]">./Início</a>
-            <a href="#projetos" className="hover:text-[#FF6B00]">./Works</a>
-            <a href="#equipe" className="hover:text-[#FF6B00]">./Equipe</a>
+        <div className="hidden md:flex gap-6 items-center font-mono text-xs uppercase font-semibold">
+          <a href="#inicio" className="hover:text-[#FF6B00] transition-colors">./Início</a>
+          <a href="#projetos" className="hover:text-[#FF6B00] transition-colors">./Works</a>
+          <a href="#equipe" className="hover:text-[#FF6B00] transition-colors">./Equipe</a>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <a href="#contato" className="hidden md:block px-4 py-2 bg-[#1B262C] dark:bg-[#F4F4F4] text-[#F4F4F4] dark:text-[#1B262C] text-sm font-bold rounded-full hover:bg-[#FF6B00] dark:hover:bg-[#FF6B00] hover:text-white dark:hover:text-white transition-colors">
+            [ CONTATE-NOS ]
+          </a>
+          <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none"
+            aria-label="Alternar Tema"
+          >
+            {isDark ? (
+              <Moon className="w-5 h-5 text-[#BBE1FA] hover:text-[#FF6B00]" />
+            ) : (
+              <Sun className="w-5 h-5 text-[#1B262C] hover:text-[#FF6B00]" />
+            )}
+          </button>
+        </div>
+      </nav>
+
+      <main className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
+  
+  <h1 className="text-black dark:text-white text-5xl md:text-7xl font-extrabold leading-[1.1] mb-8">
+    Engenharia de Software <span className="text-[#FF6B00]">Acelerada.</span>
+  </h1>
+
+
+        <section id="inicio" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[70vh]">
+          <div className="lg:col-span-6 flex flex-col gap-6">
+            <div className="font-mono text-[#FF6B00] text-sm font-semibold tracking-wider flex items-center gap-2">
+              <span className="w-8 h-px bg-[#FF6B00]"></span> SYSTEM.ONLINE // ADS
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight">
+              Engenharia <br />
+              de Software <br />
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#FF6B00] to-orange-400">Acelerada.</span>
+            </h1>
+            
+            <p className="text-lg text-[#1B262C]/70 dark:text-[#BBE1FA] max-w-lg">
+              Não fazemos apenas sites. Projetamos e desenvolvemos arquiteturas de sistemas complexos, APIs robustas e interfaces de alta performance.
+            </p>
+            
+            <div className="flex gap-4 mt-4 font-mono">
+              <a href="#projetos" className="px-6 py-4 bg-[#FF6B00] text-white rounded font-bold hover:shadow-[4px_4px_0px_rgba(27,38,44,1)] dark:hover:shadow-[4px_4px_0px_rgba(187,225,250,0.5)] transition-all active:translate-y-1 active:translate-x-1 active:shadow-none flex items-center gap-2">
+                Ver_Projetos() <TerminalSquare className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-              {isDark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-blue-900" />}
-            </button>
+          <div className="lg:col-span-6 relative mt-10 lg:mt-0">
+            <div className="absolute -inset-1 bg-linear-to-r from-[#FF6B00] to-purple-600 rounded-xl blur opacity-20 dark:opacity-40 animate-pulse"></div>
+            <div className="relative bg-[#F4F4F4] dark:bg-[#0F161A] rounded-xl border border-[#BBE1FA]/40 dark:border-[#2C3E50] shadow-2xl overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-[#BBE1FA]/20 dark:border-[#2C3E50] bg-black/5 dark:bg-white/5">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <div className="ml-4 font-mono text-xs text-[#1B262C]/50 dark:text-[#BBE1FA]/50">~/nitroi/core/init.ts</div>
+              </div>
+              <div className="p-6 overflow-x-auto text-sm md:text-base font-mono leading-relaxed">
+                <pre>
+                  <code className="text-[#1B262C] dark:text-[#BBE1FA]">
+                    <span className="text-purple-600 dark:text-purple-400">import</span> {'{ Team, Skillset }'} <span className="text-purple-600 dark:text-purple-400">from</span> <span className="text-green-600 dark:text-green-400">{names[8]}</span>;{'\n\n'}
+                    <span className="text-[#FF6B00]">const</span> nitroi = <span className="text-purple-600 dark:text-purple-400">new</span> Team({`{`}{'\n'}
+                    {'  '}name: <span className="text-green-600 dark:text-green-400">{names[0]}</span>,{'\n'}
+                    {'  '}members: [{'\n'}
+                    {'    '}<span className="text-green-600 dark:text-green-400">{names[1]}</span>, <span className="text-green-600 dark:text-green-400">{names[2]}</span>, <span className="text-green-600 dark:text-green-400">{names[3]}</span>,{'\n'}
+                    {'    '}<span className="text-green-600 dark:text-green-400">{names[4]}</span>, <span className="text-green-600 dark:text-green-400">{names[5]}</span>{'\n'}
+                    {'  '}],{'\n'}
+                    {'  '}status: <span className="text-blue-600 dark:text-blue-400">{names[6]}</span>{'\n'}
+                    {`}`});{'\n\n'}
+                    <span className="text-[#1B262C]/50 dark:text-[#BBE1FA]/50">{names[7]} Inicializando matriz de análise...</span>{'\n'}
+                    <span className="text-blue-600 dark:text-blue-400">await</span> nitroi.execute(Skillset.FULLSTACK);{'\n'}
+                    <span className="text-[#FF6B00] font-bold animate-pulse">_</span>
+                  </code>
+                </pre>
+              </div>
+            </div>
           </div>
-        </nav>
+        </section>
 
-        {/* CONTEÚDO PRINCIPAL */}
-        <main className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto">
+        <div className="w-full h-px bg-[#BBE1FA]/30 dark:bg-[#2C3E50] relative">
+          <div className="absolute -top-3 left-0 bg-[#F4F4F4] dark:bg-[#1B262C] px-2 font-mono text-xs text-[#BBE1FA] dark:text-[#2C3E50] font-bold">01 // PROJETOS</div>
+        </div>
+
+        
+        <section id="projetos" className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          <section id="inicio" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[60vh]">
-            <div className="lg:col-span-6 flex flex-col gap-6">
-              <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1]">
-                Engenharia de Software <br />
-                <span className="text-[#FF6B00]">Acelerada.</span>
-              </h1>
-              <p className="text-lg opacity-80">Projetamos e desenvolvemos arquiteturas de sistemas complexos e interfaces de alta performance.</p>
-              <a href="#projetos" className="w-fit px-6 py-4 bg-[#FF6B00] text-white rounded font-bold hover:scale-105 transition-transform">Ver_Projetos()</a>
-            </div>
-
-            {/* Terminal de Código */}
-            <div className="lg:col-span-6 bg-[#0F161A] p-6 rounded-xl border border-white/10 shadow-2xl font-mono text-sm">
-               <div className="flex gap-2 mb-4"><div className="w-3 h-3 rounded-full bg-red-500"></div><div className="w-3 h-3 rounded-full bg-yellow-500"></div><div className="w-3 h-3 rounded-full bg-green-500"></div></div>
-               <pre className="text-blue-400">
-                 <code>
-                   <span className="text-purple-400">const</span> nitroi = <span className="text-white">new Team();</span>{'\n'}
-                   <span className="text-green-400">// Status: Ready to build...</span>{'\n'}
-                   <span className="text-orange-400">await</span> nitroi.deploy();
-                 </code>
-               </pre>
-            </div>
-          </section>
-
-          {/* Seção Projetos */}
-          <section id="projetos" className="mt-20">
-            <h2 className="text-2xl font-mono mb-8 text-[#FF6B00]">01 // PROJETOS</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white dark:bg-[#0F161A] p-8 rounded-2xl border border-black/10 dark:border-white/10">
-                <h3 className="text-2xl font-bold mb-4">Projeto Flashtech</h3>
-                <p className="opacity-70 mb-6">E-commerce de hardware com foco em performance.</p>
-                <a href="https://pojetos-faculdade-teste.vercel.app/" className="text-[#FF6B00] font-mono flex items-center gap-2">Visitar_Projeto <ArrowUpRight size={16}/></a>
+          {/* PROJETO PRINCIPAL (GRANDE) */}
+          <div className="md:col-span-2 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors relative overflow-hidden flex flex-col justify-between min-h-75">
+            <div className="absolute right-0 top-0 w-64 h-64 bg-[#FF6B00]/5 rounded-full blur-3xl group-hover:bg-[#FF6B00]/10 transition-colors"></div>
+            <div className="relative z-10 flex justify-between items-start">
+              <div className="p-3 bg-[#FF6B00]/10 rounded-lg text-[#FF6B00] w-fit mb-6">
+                <Link2 className="w-8 h-8" />
               </div>
-              <div className="bg-[#1B262C] dark:bg-[#2C3E50] text-white p-8 rounded-2xl flex flex-col justify-between">
-                <h3 className="text-2xl font-bold">Precisa de um sistema?</h3>
-                <a href="#contato" className="bg-[#FF6B00] w-fit px-4 py-2 rounded font-bold mt-4">Solicitar Análise</a>
+              <span className="font-mono text-xs px-3 py-1 border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded-full">v3.0_Live</span>
+            </div>
+            <div className="relative z-10">
+              
+              {/* 1. MUDA O NOME DO PROJETO AQUI */}
+              <h3 className="text-3xl font-bold mb-3">Projeto Flashtech</h3>
+              
+              {/* 2. MUDA A DESCRIÇÃO AQUI */}
+              <p className="text-[#1B262C]/70 dark:text-[#BBE1FA] max-w-md mb-6">
+                O Flashtech foi estruturado como uma plataforma de e-commerce especializada no mercado de eletrônicos e componentes de hardware.
+                 O foco central do projeto foi criar um ambiente digital que equilibrasse uma estética moderna com uma usabilidade técnica eficiente,
+                 essencial para quem busca produtos como placas de vídeo, processadores e periféricos.
+              </p>
+              
+              {/* 3. COLOCA O LINK DO TEU SITE NO "href" AQUI */}
+              <a href="https://pojetos-faculdade-teste.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-mono text-sm text-[#FF6B00] flex items-center gap-2 hover:underline">
+                Veja_nosso_site_projeto <ArrowUpRight className="w-4 h-4" />
+              </a>
+
+            </div>
+          </div>
+
+          {/* PROJETO MENOR 1 */}
+          <div className="md:col-span-1 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors flex flex-col justify-between">
+            <div>
+              <Server className="w-8 h-8 text-[#1B262C]/50 dark:text-[#BBE1FA] mb-6 group-hover:text-[#FF6B00] transition-colors" />
+              
+              {/* NOME E DESCRIÇÃO AQUI */}
+              <h3 className="text-xl font-bold mb-2">API Gateway</h3>
+              <p className="text-sm text-[#1B262C]/70 dark:text-[#BBE1FA]">Microsserviço de roteamento para aplicações de alta demanda.</p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-2 font-mono text-xs">
+              <span className="px-2 py-1 bg-black/5 dark:bg-white/5 rounded">Node.js</span>
+              <span className="px-2 py-1 bg-black/5 dark:bg-white/5 rounded">Docker</span>
+            </div>
+          </div>
+
+          {/* PROJETO MENOR 2 */}
+          <div className="md:col-span-1 group bg-white dark:bg-[#0F161A] rounded-2xl border border-[#BBE1FA]/30 dark:border-[#2C3E50] p-8 hover:border-[#FF6B00] dark:hover:border-[#FF6B00] transition-colors flex flex-col justify-between">
+            <div>
+              <Figma className="w-8 h-8 text-[#1B262C]/50 dark:text-[#BBE1FA] mb-6 group-hover:text-[#FF6B00] transition-colors" />
+              
+              {/* NOME E DESCRIÇÃO AQUI */}
+              <h3 className="text-xl font-bold mb-2">Design System</h3>
+              <p className="text-sm text-[#1B262C]/70 dark:text-[#BBE1FA]">Biblioteca de componentes padronizados para UI/UX ágil.</p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-2 font-mono text-xs">
+              <span className="px-2 py-1 bg-black/5 dark:bg-white/5 rounded">Figma</span>
+              <span className="px-2 py-1 bg-black/5 dark:bg-white/5 rounded">React</span>
+            </div>
+          </div>
+
+          {/* Destaque CTA (Deixa como está) */}
+          <div className="md:col-span-2 group bg-[#1B262C] dark:bg-[#2C3E50] text-[#F4F4F4] rounded-2xl border border-[#1B262C] dark:border-[#2C3E50] p-8 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">Precisa de um sistema sob medida?</h3>
+              <p className="text-[#BBE1FA]">Nossa equipe analisa seus processos corporativos e desenvolve a solução ideal.</p>
+            </div>
+            <a href="#contato" className="whitespace-nowrap px-6 py-3 bg-[#FF6B00] text-white rounded font-bold hover:bg-orange-600 transition-colors">
+              Solicitar Análise
+            </a>
+          </div>
+        </section>
+
+        {/* Divisor Técnico 2 */}
+        <div className="w-full h-px bg-[#BBE1FA]/30 dark:bg-[#2C3E50] relative">
+          <div className="absolute -top-3 left-0 bg-[#F4F4F4] dark:bg-[#1B262C] px-2 font-mono text-xs text-[#BBE1FA] dark:text-[#2C3E50] font-bold">02 // EQUIPE_ADS</div>
+        </div>
+
+        {/* Secção da Equipe */}
+        <section id="equipe" className="w-full">
+          <div className="flex flex-col border-t border-b border-[#BBE1FA]/30 dark:border-[#2C3E50] divide-y divide-[#BBE1FA]/30 dark:divide-[#2C3E50] font-mono">
+            <div className="grid grid-cols-12 gap-4 py-4 text-xs text-[#1B262C]/50 dark:text-[#BBE1FA] uppercase tracking-wider md:grid">
+              <div className="col-span-4">Nome_Membro</div>
+              <div className="col-span-4">Especialidade / Role</div>
+              <div className="col-span-4 text-right">Acesso</div>
+            </div>
+
+            {[
+              { name: 'Kawan', role: 'Lead_Developer', initial: 'K', github: 'https://github.com/Kawan-Karlos', linkedin: 'https://linkedin.com' },
+              { name: 'Vitor', role: 'Systems_Analyst', initial: 'V', github: 'https://github.com/vitormarcelo25', linkedin: 'https://linkedin.com' },
+              { name: 'Sabrina', role: 'UI/UX_Frontend', initial: 'S', github: 'https://github.com/skayllane06-collab', linkedin: 'https://linkedin.com' },
+              { name: 'David', role: 'Backend_Engineer', initial: 'D', github: 'https://github.com/David-Rn01', linkedin: 'https://linkedin.com' },
+              { name: 'Antonio', role: 'DevOps_Cloud', initial: 'A', github: 'https://github.com/LXCNTURY', linkedin: 'https://linkedin.com' }
+            ].map((member, idx) => (
+              <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 items-center group hover:bg-black/5 dark:hover:bg-white/5 transition-colors px-2 md:px-0">
+                <div className="md:col-span-4 flex items-center gap-4">
+                  <div className="w-10 h-10 bg-[#BBE1FA]/30 dark:bg-[#0F161A] rounded flex items-center justify-center font-bold text-lg group-hover:text-[#FF6B00] transition-colors border border-transparent group-hover:border-[#FF6B00]/30">{member.initial}</div>
+                  <span className="text-xl font-bold font-sans">{member.name}</span>
+                </div>
+                <div className="md:col-span-4 text-[#1B262C]/70 dark:text-[#BBE1FA] text-sm mt-2 md:mt-0">
+                  <span className="text-[#FF6B00]">{'>'}</span> {member.role}
+                </div>
+                <div className="md:col-span-4 flex md:justify-end gap-3 mt-4 md:mt-0 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+                  <a href={member.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-white dark:bg-[#2C3E50] border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded hover:text-[#FF6B00] transition-colors" title="Ver GitHub">
+                    <Github className="w-4 h-4" />
+                  </a>
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 bg-white dark:bg-[#2C3E50] border border-[#BBE1FA]/30 dark:border-[#2C3E50] rounded hover:text-[#FF6B00] transition-colors" title="Ver LinkedIn">
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Seção de Contato */}
+        <section id="contato" className="bg-[#1B262C] rounded-3xl p-8 md:p-16 border border-[#2C3E50] text-[#F4F4F4] overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF6B00]/10 rounded-full blur-[100px] pointer-events-none"></div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+            <div>
+              <div className="font-mono text-[#FF6B00] text-sm mb-4">03 // INICIAR_CONEXÃO</div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para compilar a sua ideia?</h2>
+              <p className="text-[#BBE1FA] mb-8">Envie-nos uma requisição e a nossa equipe entrará em contato para discutirmos a arquitetura técnica do seu projeto.</p>
+              
+              <div className="flex flex-col gap-4 font-mono text-sm text-[#BBE1FA]">
+                <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-[#FF6B00]" /> nitroi.cloud5@gmail.com</div>
+                <div className="flex items-center gap-3"><MapPin className="w-5 h-5 text-[#FF6B00]" /> Sistema Distribuído / Remoto</div>
               </div>
             </div>
-          </section>
 
-          {/* Seção Contato */}
-          <section id="contato" className="mt-32 bg-[#1B262C] text-white p-10 rounded-3xl border border-white/10">
-            <h2 className="text-3xl font-bold mb-6">Iniciar Conexão</h2>
-            <form onSubmit={hendleSendEmail} className="grid grid-cols-1 gap-4">
-              <input type="text" placeholder="Seu Nome" value={nome} onChange={(e)=>setNome(e.target.value)} className="bg-black/20 p-4 rounded border border-white/10 focus:border-[#FF6B00] outline-none" />
-              <input type="email" placeholder="Seu Email" value={email} onChange={(e)=>setEmail(e.target.value)} className="bg-black/20 p-4 rounded border border-white/10 focus:border-[#FF6B00] outline-none" />
-              <textarea placeholder="Sua Mensagem" value={payload} onChange={(e)=>setPayload(e.target.value)} className="bg-black/20 p-4 rounded border border-white/10 focus:border-[#FF6B00] outline-none" rows={4}></textarea>
-              <button type="submit" className="bg-[#FF6B00] py-4 rounded font-bold flex items-center justify-center gap-2">System.send() <Send size={18}/></button>
+            <form 
+              className="flex flex-col gap-4"
+              onSubmit={hendleSendEmail}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1">
+                  <label className="font-mono text-xs text-[#BBE1FA]">const nome = </label>
+                  <input type="text" placeholder="'Seu Nome'" id="nome" value={nome} onChange={hendleChangeNome} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="font-mono text-xs text-[#BBE1FA]">const email = </label>
+                  <input type="email" placeholder="'email@empresa.com'" id="email" value={email} onChange={hendleChangeEmail} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required />
+                </div>
+              </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="font-mono text-xs text-[#BBE1FA]">const payload = </label>
+                <textarea rows={4} placeholder="'Descreva a sua necessidade técnica...'" id="payload" value={payload} onChange={hendleChangePayload} className="bg-[#0F161A] border border-[#2C3E50] p-3 rounded text-white font-mono focus:border-[#FF6B00] focus:outline-none transition-colors" required></textarea>
+              </div>
+              <button type="submit" className="mt-4 py-4 bg-[#FF6B00] text-white font-bold rounded font-mono hover:bg-orange-600 transition-colors flex justify-center items-center gap-2">
+                System.send() <Send className="w-4 h-4" />
+              </button>
             </form>
-          </section>
+          </div>
+        </section>
 
-        </main>
+      </main>
 
-        <footer className="text-center py-10 opacity-50 font-mono text-xs">
-          <p>Copyright © 2026 Nitroi_ADS. Todos os blocos processados.</p>
-        </footer>
-      </div>
+      <footer className="text-center py-8 font-mono text-xs text-[#1B262C]/50 dark:text-[#BBE1FA]/50">
+        <p>Copyright © 2026 Nitroi_ADS. Todos os blocos processados.</p>
+      </footer>
     </div>
   );
 }
